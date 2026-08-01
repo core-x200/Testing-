@@ -2287,6 +2287,16 @@ if (new Date() < unlockTime) {
     ">
         <h1>🔒 Surprise Locked</h1>
         <p>Open after 12:00 AM ❤️</p>
+        <div id="countdown" style="
+font-size:28px;
+font-weight:bold;
+color:white;
+margin-top:20px;
+text-align:center;
+line-height:1.6;
+">
+Loading...
+</div>
     </div>
     `;
 
@@ -4184,7 +4194,41 @@ createCelebration();
 }
 
 }
-	
+	// Unlock Date & Time
+const unlockDate = new Date("August 2, 2026 00:00:00").getTime();
+
+setInterval(function(){
+
+const now = new Date().getTime();
+const distance = unlockDate - now;
+
+const days = Math.floor(distance / (1000*60*60*24));
+const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+const box = document.getElementById("countdown");
+
+if(box){
+
+box.innerHTML = `
+⏳<br>
+${days}d ${hours}h ${minutes}m ${seconds}s
+`;
+
+}
+
+if(distance <= 0){
+
+clearInterval(this);
+
+if(box){
+box.innerHTML = "🎉 Surprise Unlocked ❤️";
+}
+
+}
+
+},1000);
 </script>
 
 </body>

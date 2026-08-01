@@ -2290,7 +2290,7 @@ if (new Date() < unlockTime) {
     </div>
     `;
 
-    //throw new Error("Locked");
+    throw new Error("Locked");
 }
 
 let gfStep = 0;
@@ -3527,6 +3527,7 @@ function createName() {
 setInterval(createName, 200);
 
 const box = document.querySelector(".box");
+if (box) {
 
 box.addEventListener("click", function(e){
 
@@ -3543,6 +3544,7 @@ box.addEventListener("click", function(e){
     },600);
 
 });
+}
 
 function emojiEffect(element){
     element.classList.add("bounce");

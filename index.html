@@ -2193,6 +2193,35 @@ box-shadow:
     }
 }
 
+#countdown{
+font-size:30px;
+font-weight:bold;
+color:#fff;
+margin-top:20px;
+text-align:center;
+line-height:1.7;
+animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+0%{
+transform:scale(1);
+text-shadow:0 0 10px #fff;
+}
+100%{
+transform:scale(1.08);
+text-shadow:0 0 25px #ff69b4,0 0 40px #fff;
+}
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
+
+#countdown{
+animation:float 3s ease-in-out infinite, glow 2s infinite alternate;
+}
 </style>
 
 </head>
@@ -2287,6 +2316,11 @@ if (new Date() < unlockTime) {
     ">
         <h1>🔒 Surprise Locked</h1>
         <p>Open after 12:00 AM ❤️</p>
+        <h2>⏳ Time Remaining</h2>
+
+<div id="countdown">
+Loading...
+</div>
         <div id="countdown" style="
 font-size:28px;
 font-weight:bold;
@@ -4229,6 +4263,24 @@ box.innerHTML = "🎉 Surprise Unlocked ❤️";
 }
 
 },1000);
+
+const unlockDate = new Date("August 2, 2026 00:00:00").getTime();
+
+setInterval(function(){
+
+const now = new Date().getTime();
+const distance = unlockDate - now;
+
+const d = Math.floor(distance/(1000*60*60*24));
+const h = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const m = Math.floor((distance%(1000*60*60))/(1000*60));
+const s = Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML =
+`${d} Days<br>${h} Hours ${m} Minutes ${s} Seconds`;
+
+},1000);
+
 </script>
 
 </body>
